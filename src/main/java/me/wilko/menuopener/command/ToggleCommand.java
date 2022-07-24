@@ -1,7 +1,7 @@
 package me.wilko.menuopener.command;
 
-import me.wilko.menuopener.Settings.Settings;
 import me.wilko.menuopener.model.MenuItem;
+import me.wilko.menuopener.settings.Settings;
 import org.bukkit.inventory.ItemStack;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.command.SimpleCommand;

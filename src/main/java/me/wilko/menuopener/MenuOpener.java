@@ -1,7 +1,7 @@
 package me.wilko.menuopener;
 
-import me.wilko.menuopener.Settings.Settings;
 import me.wilko.menuopener.command.ToggleCommand;
+import me.wilko.menuopener.settings.Settings;
 import org.mineacademy.fo.plugin.SimplePlugin;
 
 public final class MenuOpener extends SimplePlugin {

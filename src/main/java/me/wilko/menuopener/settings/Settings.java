@@ -1,4 +1,4 @@
-package me.wilko.menuopener.Settings;
+package me.wilko.menuopener.settings;
 
 import org.bukkit.Material;
 import org.mineacademy.fo.Common;
