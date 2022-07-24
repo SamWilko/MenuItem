@@ -1,0 +1,18 @@
+Item:
+  Material: "NETHER_STAR"
+  Name: "&bMenu Item"
+  Lore:
+    - "&9This is a magic item"
+    - "&9It can run commands!"
+  Glowing: true
+
+  # Use {player} to get the players' name
+  Right_Click_Command: "dmenu open mainmenu {player}"
+  Inventory_Click_Command: "dmenu open mainmenu {player}"
+
+# The main label and aliases separated by '|'
+Command_Label: "togglemenu|tm"
+
+Error_Message: "&8[&c!&8] &cYou must free up space in your last hotbar slot!"
+
+Version: 1
