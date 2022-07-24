@@ -23,6 +23,7 @@ public class ToggleCommand extends SimpleCommand {
 
 			MenuItem.giveTo(getPlayer());
 			CompSound.ITEM_PICKUP.play(getPlayer());
+			Common.tellNoPrefix(getPlayer(), Settings.Messages.TOGGLE_ON);
 
 		} else {
 
@@ -32,12 +33,12 @@ public class ToggleCommand extends SimpleCommand {
 				// Takes it away
 				getPlayer().getInventory().setItem(8, null);
 				CompSound.ITEM_PICKUP.play(getPlayer(), 1f, 0.5f);
+				Common.tellNoPrefix(getPlayer(), Settings.Messages.TOGGLE_OFF);
 
 			} else {
 
-				Common.tellNoPrefix(getPlayer(), Settings.ERROR_MESSAGE);
+				Common.tellNoPrefix(getPlayer(), Settings.Messages.ERROR);
 				CompSound.VILLAGER_NO.play(getPlayer());
-
 			}
 		}
 	}

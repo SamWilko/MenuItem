@@ -10,7 +10,6 @@ import java.util.List;
 public final class Settings extends SimpleSettings {
 
 	public static String COMMAND_LABEL;
-	public static String ERROR_MESSAGE;
 
 	private static void init() {
 		setPathPrefix(null);
@@ -20,12 +19,38 @@ public final class Settings extends SimpleSettings {
 		} else {
 			Common.warning("Command_Label is not set. Setting to default value of 'togglemenu|tm'");
 		}
+	}
 
-		if (isSet("Error_Message")) {
-			ERROR_MESSAGE = getString("Error_Message");
-		} else {
-			Common.warning("Error_Message is not set. Setting to default value.");
-			ERROR_MESSAGE = "&cYou must free up space in your last hotbar slot!";
+	public static class Messages {
+
+		public static String ERROR;
+		public static String TOGGLE_ON;
+		public static String TOGGLE_OFF;
+
+		private static void init() {
+
+			setPathPrefix("Messages");
+
+			if (isSet("Error_Message")) {
+				ERROR = getString("Error_Message");
+			} else {
+				Common.warning("Error_Message is not set. Setting to default value.");
+				ERROR = "&cYou must free up space in your last hotbar slot!";
+			}
+
+			if (isSet("Toggle_On")) {
+				TOGGLE_ON = getString("Toggle_On");
+			} else {
+				Common.warning("Toggle_On is not set. Setting to default value.");
+				TOGGLE_ON = "&aYou toggled the menu item on!";
+			}
+
+			if (isSet("Toggle_Off")) {
+				TOGGLE_OFF = getString("Toggle_Off");
+			} else {
+				Common.warning("Toggle_Off is not set. Setting to default value.");
+				TOGGLE_OFF = "&aYou toggled the menu item off!";
+			}
 		}
 	}
 

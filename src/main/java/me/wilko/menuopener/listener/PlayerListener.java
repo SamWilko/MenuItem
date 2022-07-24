@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -63,9 +62,7 @@ public final class PlayerListener implements Listener {
 			event.setCancelled(true);
 
 			// Executes the command if they simply left click the item
-			if (event.getClick() == ClickType.LEFT) {
-				MenuItem.runFor(player, MenuItem.ExecuteType.INVENTORY_CLICK);
-			}
+			MenuItem.runFor(player, MenuItem.ExecuteType.INVENTORY_CLICK);
 		}
 	}
 

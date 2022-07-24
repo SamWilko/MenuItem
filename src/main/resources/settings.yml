@@ -13,6 +13,9 @@ Item:
 # The main label and aliases separated by '|'
 Command_Label: "togglemenu|tm"
 
-Error_Message: "&8[&c!&8] &cYou must free up space in your last hotbar slot!"
+Messages:
+  Error: "&8[&c!&8] &cYou must free up space in your last hotbar slot!"
+  Toggle_On: "&aYou toggled the menu item on!"
+  Toggle_Off: "&aYou toggled the menu item off!"
 
 Version: 1
