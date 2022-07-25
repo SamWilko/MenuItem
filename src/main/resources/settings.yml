@@ -1,21 +1,42 @@
-Item:
-  Material: "NETHER_STAR"
-  Name: "&bMenu Item"
-  Lore:
-    - "&9This is a magic item"
-    - "&9It can run commands!"
-  Glowing: true
-
-  # Use {player} to get the players' name
-  Right_Click_Command: "dmenu open mainmenu {player}"
-  Inventory_Click_Command: "dmenu open mainmenu {player}"
-
-# The main label and aliases separated by '|'
+# The main command label and aliases separated by '|' to toggle on/off the item
 Command_Label: "togglemenu|tm"
 
-Messages:
-  Error: "&8[&c!&8] &cYou must free up space in your last hotbar slot!"
-  Toggle_On: "&aYou toggled the menu item on!"
-  Toggle_Off: "&aYou toggled the menu item off!"
+# Configure the item itself
+Item:
+  Material: NETHER_STAR
+  Name: "&b&lCommander"
+  Lore:
+    - ""
+    - "&9This item can run commands!"
+    - ""
+    - "&3Right Click Command:"
+    - "&bA cool command!"
+    - ""
+    - "&3Inventory Click Command:"
+    - "&bAnother cool command!"
+  Glowing: true
 
+  # Use {player} to get the name of the player clicking the item
+  Right_Click_Command: "mycoolcommand"
+  Inventory_Click_Command: "mycoolcommand"
+
+Messages:
+
+  # Sent when the player does not have permission to use the toggle command
+  No_Permission: "&8[&c!&8]&c You do not have permission to use this command"
+
+  # Sent when the player tries to type an argument in the toggle command
+  Invalid_Syntax: "&8[&c!&8]&c Invalid Syntax"
+
+  # Sent when the player has an item in the last slot of their hotbar, preventing the commander from being there
+  Error: "&8[&c!&8]&c You must free up space in your last hotbar slot!"
+
+  # Sent when the player toggles on the commander
+  Toggle_On: "&8[&ai&8]&a You received The Commander"
+
+  # Sent when the player toggles off the commander
+  Toggle_Off: "&8[&ai&8]&a You removed The Commander"
+
+# Do not edit these
+Prefix: ""
 Version: 1

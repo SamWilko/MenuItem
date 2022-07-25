@@ -1,44 +1,51 @@
 package me.wilko.menuopener.command;
 
 import me.wilko.menuopener.model.MenuItem;
+import me.wilko.menuopener.settings.PlayerData;
 import me.wilko.menuopener.settings.Settings;
-import org.bukkit.inventory.ItemStack;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.command.SimpleCommand;
-import org.mineacademy.fo.remain.CompMetadata;
-import org.mineacademy.fo.remain.CompSound;
 
 public class ToggleCommand extends SimpleCommand {
 
 	public ToggleCommand(String label) {
 		super(label);
+
+		setAutoHandleHelp(false);
+		setPermission("menuitem.toggle");
+		setPermissionMessage(Settings.Messages.NO_PERMISSION);
 	}
 
 	@Override
 	protected void onCommand() {
 
-		ItemStack itemAtSlot = getPlayer().getInventory().getItem(8);
+		if (args.length > 0) {
+			Common.tellNoPrefix(getPlayer(), Settings.Messages.INVALID_SYNTAX);
+			return;
+		}
 
-		if (itemAtSlot == null) {
+		PlayerData data = PlayerData.get(getPlayer());
 
-			MenuItem.giveTo(getPlayer());
-			CompSound.ITEM_PICKUP.play(getPlayer());
-			Common.tellNoPrefix(getPlayer(), Settings.Messages.TOGGLE_ON);
+		// Checks if the player has the menu item
+		if (MenuItem.checkHas(getPlayer())) {
+
+			// Removes it and toggles it off in their file
+			Common.tellNoPrefix(getPlayer(), MenuItem.remove(getPlayer()));
+			data.setToggled(false);
 
 		} else {
 
-			// check if the item is a menu item
-			if (CompMetadata.hasMetadata(itemAtSlot, "ismenuitem")) {
+			// Checks if the slot is empty
+			if (MenuItem.checkFree(getPlayer())) {
 
-				// Takes it away
-				getPlayer().getInventory().setItem(8, null);
-				CompSound.ITEM_PICKUP.play(getPlayer(), 1f, 0.5f);
-				Common.tellNoPrefix(getPlayer(), Settings.Messages.TOGGLE_OFF);
+				// Gives them the item and toggles it on in their file
+				Common.tellNoPrefix(getPlayer(), MenuItem.give(getPlayer()));
+				data.setToggled(true);
 
 			} else {
 
+				// Sends them an error and don't alter the toggle in their file
 				Common.tellNoPrefix(getPlayer(), Settings.Messages.ERROR);
-				CompSound.VILLAGER_NO.play(getPlayer());
 			}
 		}
 	}

@@ -1,17 +1,21 @@
 package me.wilko.menuopener.listener;
 
 import me.wilko.menuopener.model.MenuItem;
+import me.wilko.menuopener.settings.PlayerData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.mineacademy.fo.Common;
 import org.mineacademy.fo.annotation.AutoRegister;
 import org.mineacademy.fo.remain.CompMetadata;
+
+import java.util.List;
 
 @AutoRegister
 public final class PlayerListener implements Listener {
@@ -74,5 +78,56 @@ public final class PlayerListener implements Listener {
 		// Prevents the player dropping the menu item
 		if (CompMetadata.hasMetadata(dropped, "ismenuitem"))
 			event.setCancelled(true);
+
+	}
+
+	@EventHandler
+	public void onRespawn(PlayerRespawnEvent event) {
+		Common.runLater(1, () -> {
+
+			Player player = event.getPlayer();
+
+			if (PlayerData.get(player).isToggled() && !MenuItem.checkHas(player))
+				MenuItem.give(player, false);
+		});
+	}
+
+	@EventHandler
+	public void onDeath(PlayerDeathEvent event) {
+
+		if (MenuItem.checkHas(event.getEntity())) {
+
+			List<ItemStack> drops = event.getDrops();
+			int removeIndex = 0;
+
+			for (int i = 0; i < drops.size(); i++) {
+
+				if (CompMetadata.hasMetadata(drops.get(i), "ismenuitem"))
+					removeIndex = i;
+			}
+
+			event.getDrops().remove(removeIndex);
+		}
+	}
+
+	@EventHandler
+	public void onJoin(PlayerJoinEvent event) {
+
+		Player player = event.getPlayer();
+
+		PlayerData data = PlayerData.get(player.getPlayer());
+
+		// If the player has the item toggled but they don't have it (new players)
+		if (data.isToggled() && !MenuItem.checkHas(player)) {
+
+			// Make sure the slot is free
+			if (MenuItem.checkFree(player))
+				MenuItem.give(player, false);
+		}
+	}
+
+	@EventHandler
+	public void onQuit(PlayerQuitEvent event) {
+		PlayerData.remove(event.getPlayer());
 	}
 }

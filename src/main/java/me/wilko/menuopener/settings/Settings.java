@@ -14,15 +14,13 @@ public final class Settings extends SimpleSettings {
 	private static void init() {
 		setPathPrefix(null);
 
-		if (isSet("Command_Label")) {
-			COMMAND_LABEL = getString("Command_Label");
-		} else {
-			Common.warning("Command_Label is not set. Setting to default value of 'togglemenu|tm'");
-		}
+		COMMAND_LABEL = getString("Command_Label");
 	}
 
 	public static class Messages {
 
+		public static String NO_PERMISSION;
+		public static String INVALID_SYNTAX;
 		public static String ERROR;
 		public static String TOGGLE_ON;
 		public static String TOGGLE_OFF;
@@ -31,26 +29,11 @@ public final class Settings extends SimpleSettings {
 
 			setPathPrefix("Messages");
 
-			if (isSet("Error_Message")) {
-				ERROR = getString("Error_Message");
-			} else {
-				Common.warning("Error_Message is not set. Setting to default value.");
-				ERROR = "&cYou must free up space in your last hotbar slot!";
-			}
-
-			if (isSet("Toggle_On")) {
-				TOGGLE_ON = getString("Toggle_On");
-			} else {
-				Common.warning("Toggle_On is not set. Setting to default value.");
-				TOGGLE_ON = "&aYou toggled the menu item on!";
-			}
-
-			if (isSet("Toggle_Off")) {
-				TOGGLE_OFF = getString("Toggle_Off");
-			} else {
-				Common.warning("Toggle_Off is not set. Setting to default value.");
-				TOGGLE_OFF = "&aYou toggled the menu item off!";
-			}
+			NO_PERMISSION = getString("No_Permission");
+			INVALID_SYNTAX = getString("Invalid_Syntax");
+			ERROR = getString("Error");
+			TOGGLE_ON = getString("Toggle_On");
+			TOGGLE_OFF = getString("Toggle_Off");
 		}
 	}
 
@@ -66,59 +49,28 @@ public final class Settings extends SimpleSettings {
 		private static void init() {
 			setPathPrefix("Item");
 
-			if (isSet("Material")) {
-				String materialName = getString("Material");
+			String materialName = getString("Material");
 
-				try {
+			try {
+				Material material = Material.valueOf(materialName);
+				MATERIAL = CompMaterial.fromMaterial(material);
 
-					Material material = Material.valueOf(materialName);
-					MATERIAL = CompMaterial.fromMaterial(material);
+			} catch (IllegalArgumentException ex) {
 
-				} catch (IllegalArgumentException ex) {
+				Common.warning("Material '" + materialName + "' is invalid! Setting to default value of 'NETHER_STAR'");
 
-					Common.warning("Material '" + materialName + "' is invalid! Setting to default value of 'NETHER_STAR'");
-
-					MATERIAL = CompMaterial.NETHER_STAR;
-				}
-			} else {
 				MATERIAL = CompMaterial.NETHER_STAR;
 			}
 
-			if (isSet("Name"))
-				NAME = getString("Name");
-			else {
-				Common.warning("Item.Name not set. Setting to default value of 'Menu Item'");
-				NAME = "Menu Item";
-			}
+			NAME = getString("Name");
 
-			if (isSet("Lore")) {
-				LORE = getStringList("Lore");
-			} else {
-				Common.warning("Item.Lore not set. Setting to default value of null");
-				LORE = null;
-			}
+			LORE = getStringList("Lore");
 
-			if (isSet("Glowing")) {
-				GLOWING = getBoolean("Glowing");
-			} else {
-				Common.warning("Glowing not set. Setting to default value of true");
-				GLOWING = true;
-			}
+			GLOWING = getBoolean("Glowing");
 
-			if (isSet("Right_Click_Command")) {
-				RIGHT_CLICK_COMMAND = getString("Right_Click_Command");
-			} else {
-				Common.warning("Right_Click_Command not set. Setting to default value of null");
-				RIGHT_CLICK_COMMAND = null;
-			}
+			RIGHT_CLICK_COMMAND = getString("Right_Click_Command");
 
-			if (isSet("Inventory_Click_Command")) {
-				INVENTORY_CLICK_COMMAND = getString("Inventory_Click_Command");
-			} else {
-				Common.warning("Inventory_Click_Command not set. Setting to default value of null");
-				INVENTORY_CLICK_COMMAND = null;
-			}
+			INVENTORY_CLICK_COMMAND = getString("Inventory_Click_Command");
 		}
-
 	}
 }
