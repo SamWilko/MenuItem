@@ -1,6 +1,6 @@
-package me.wilko.menuopener.model;
+package me.wilko.commander.model;
 
-import me.wilko.menuopener.settings.Settings;
+import me.wilko.commander.settings.Settings;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.mineacademy.fo.Common;

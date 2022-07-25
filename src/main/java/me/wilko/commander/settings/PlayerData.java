@@ -1,4 +1,4 @@
-package me.wilko.menuopener.settings;
+package me.wilko.commander.settings;
 
 import lombok.Getter;
 import org.bukkit.entity.Player;

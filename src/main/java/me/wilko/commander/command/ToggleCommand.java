@@ -1,8 +1,8 @@
-package me.wilko.menuopener.command;
+package me.wilko.commander.command;
 
-import me.wilko.menuopener.model.MenuItem;
-import me.wilko.menuopener.settings.PlayerData;
-import me.wilko.menuopener.settings.Settings;
+import me.wilko.commander.model.MenuItem;
+import me.wilko.commander.settings.PlayerData;
+import me.wilko.commander.settings.Settings;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.command.SimpleCommand;
 

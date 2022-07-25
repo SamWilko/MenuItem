@@ -1,11 +1,11 @@
-package me.wilko.menuopener;
+package me.wilko.commander;
 
-import me.wilko.menuopener.command.ToggleCommand;
-import me.wilko.menuopener.settings.Settings;
+import me.wilko.commander.command.ToggleCommand;
+import me.wilko.commander.settings.Settings;
 import org.mineacademy.fo.Messenger;
 import org.mineacademy.fo.plugin.SimplePlugin;
 
-public final class MenuOpener extends SimplePlugin {
+public final class Commander extends SimplePlugin {
 
 	@Override
 	protected void onPluginStart() {
@@ -19,7 +19,7 @@ public final class MenuOpener extends SimplePlugin {
 
 	}
 
-	public static MenuOpener getInstance() {
-		return (MenuOpener) SimplePlugin.getInstance();
+	public static Commander getInstance() {
+		return (Commander) SimplePlugin.getInstance();
 	}
 }

@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.wilko.menuopener</groupId>
+    <groupId>me.wilko.commander</groupId>
 
-    <artifactId>menuopener</artifactId>
+    <artifactId>commander</artifactId>
 
-    <name>MenuOpener</name>
+    <name>Commander</name>
 
     <version>1.1.0</version>
 
@@ -17,7 +17,7 @@
 
         <author>Wilko</author>
 
-        <main.class>me.wilko.menuopener.MenuOpener</main.class>
+        <main.class>me.wilko.commander.Commander</main.class>
 
         <java.version>1.8</java.version>
 

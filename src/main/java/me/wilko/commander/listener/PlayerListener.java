@@ -1,7 +1,7 @@
-package me.wilko.menuopener.listener;
+package me.wilko.commander.listener;
 
-import me.wilko.menuopener.model.MenuItem;
-import me.wilko.menuopener.settings.PlayerData;
+import me.wilko.commander.model.MenuItem;
+import me.wilko.commander.settings.PlayerData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
