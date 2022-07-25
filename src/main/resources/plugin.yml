@@ -13,5 +13,5 @@ softdepend: [ AuthMe, BanManager, BungeeChatAPI, CMI, DiscordSRV, Factions, Feud
 commands:
 
 permissions:
-  menuitem.toggle:
+  commander.toggle:
     default: false

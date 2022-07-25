@@ -12,7 +12,7 @@ public class ToggleCommand extends SimpleCommand {
 		super(label);
 
 		setAutoHandleHelp(false);
-		setPermission("menuitem.toggle");
+		setPermission("commander.toggle");
 		setPermissionMessage(Settings.Messages.NO_PERMISSION);
 	}
 
