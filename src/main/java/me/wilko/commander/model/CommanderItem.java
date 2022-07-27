@@ -8,7 +8,7 @@ import org.mineacademy.fo.menu.model.ItemCreator;
 import org.mineacademy.fo.remain.CompMetadata;
 import org.mineacademy.fo.remain.CompSound;
 
-public class MenuItem {
+public class CommanderItem {
 
 	private static ItemStack get() {
 		ItemStack item = ItemCreator.of(
@@ -64,7 +64,7 @@ public class MenuItem {
 
 	public static void runFor(Player player, ExecuteType type) {
 
-		Common.dispatchCommandAsPlayer(player,
+		Common.dispatchCommand(player,
 				type == ExecuteType.RIGHT_CLICK ? Settings.Item.RIGHT_CLICK_COMMAND : Settings.Item.INVENTORY_CLICK_COMMAND);
 	}
 

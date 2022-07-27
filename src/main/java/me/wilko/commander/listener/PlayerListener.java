@@ -1,6 +1,6 @@
 package me.wilko.commander.listener;
 
-import me.wilko.commander.model.MenuItem;
+import me.wilko.commander.model.CommanderItem;
 import me.wilko.commander.settings.PlayerData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,7 +40,7 @@ public final class PlayerListener implements Listener {
 					&& (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 
 				// Right click command execution
-				MenuItem.runFor(event.getPlayer(), MenuItem.ExecuteType.RIGHT_CLICK);
+				CommanderItem.runFor(event.getPlayer(), CommanderItem.ExecuteType.RIGHT_CLICK);
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public final class PlayerListener implements Listener {
 			event.setCancelled(true);
 
 			// Executes the command if they simply left click the item
-			MenuItem.runFor(player, MenuItem.ExecuteType.INVENTORY_CLICK);
+			CommanderItem.runFor(player, CommanderItem.ExecuteType.INVENTORY_CLICK);
 		}
 	}
 
@@ -87,15 +87,15 @@ public final class PlayerListener implements Listener {
 
 			Player player = event.getPlayer();
 
-			if (PlayerData.get(player).isToggled() && !MenuItem.checkHas(player))
-				MenuItem.give(player, false);
+			if (PlayerData.get(player).isToggled() && !CommanderItem.checkHas(player))
+				CommanderItem.give(player, false);
 		});
 	}
 
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event) {
 
-		if (MenuItem.checkHas(event.getEntity())) {
+		if (CommanderItem.checkHas(event.getEntity())) {
 
 			List<ItemStack> drops = event.getDrops();
 			int removeIndex = 0;
@@ -118,11 +118,11 @@ public final class PlayerListener implements Listener {
 		PlayerData data = PlayerData.get(player.getPlayer());
 
 		// If the player has the item toggled but they don't have it (new players)
-		if (data.isToggled() && !MenuItem.checkHas(player)) {
+		if (data.isToggled() && !CommanderItem.checkHas(player)) {
 
 			// Make sure the slot is free
-			if (MenuItem.checkFree(player))
-				MenuItem.give(player, false);
+			if (CommanderItem.checkFree(player))
+				CommanderItem.give(player, false);
 		}
 	}
 

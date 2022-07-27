@@ -1,6 +1,6 @@
 package me.wilko.commander.command;
 
-import me.wilko.commander.model.MenuItem;
+import me.wilko.commander.model.CommanderItem;
 import me.wilko.commander.settings.PlayerData;
 import me.wilko.commander.settings.Settings;
 import org.mineacademy.fo.Common;
@@ -27,19 +27,19 @@ public class ToggleCommand extends SimpleCommand {
 		PlayerData data = PlayerData.get(getPlayer());
 
 		// Checks if the player has the menu item
-		if (MenuItem.checkHas(getPlayer())) {
+		if (CommanderItem.checkHas(getPlayer())) {
 
 			// Removes it and toggles it off in their file
-			Common.tellNoPrefix(getPlayer(), MenuItem.remove(getPlayer()));
+			Common.tellNoPrefix(getPlayer(), CommanderItem.remove(getPlayer()));
 			data.setToggled(false);
 
 		} else {
 
 			// Checks if the slot is empty
-			if (MenuItem.checkFree(getPlayer())) {
+			if (CommanderItem.checkFree(getPlayer())) {
 
 				// Gives them the item and toggles it on in their file
-				Common.tellNoPrefix(getPlayer(), MenuItem.give(getPlayer()));
+				Common.tellNoPrefix(getPlayer(), CommanderItem.give(getPlayer()));
 				data.setToggled(true);
 
 			} else {

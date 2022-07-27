@@ -17,8 +17,8 @@ Item:
   Glowing: true
 
   # Use {player} to get the name of the player clicking the item
-  Right_Click_Command: "mycoolcommand"
-  Inventory_Click_Command: "mycoolcommand"
+  Right_Click_Command: "me {player} did a right click!"
+  Inventory_Click_Command: "me {player} did an inventory click!"
 
 Messages:
 
